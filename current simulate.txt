@@ -1,0 +1,24 @@
+import csv
+import time
+
+
+def simulate_csv_processing(file_path):
+    try:
+        while True:
+            with open(file_path, mode='r') as file:
+                csv_reader = csv.reader(file)
+                next(csv_reader) 
+
+                print('\nSimulating data processing...')
+                for row in csv_reader:
+                    print(f'Processing row: {row}')
+
+            print('\nWaiting for 5 seconds before next simulation...')
+            time.sleep(5)
+
+    except FileNotFoundError:
+        print('CSV file not found. Please check the file path.')
+
+
+csv_file_path = 'your_file.csv'  
+simulate_csv_processing(csv_file_path)
