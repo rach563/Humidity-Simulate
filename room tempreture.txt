@@ -1,0 +1,37 @@
+import csv
+import random
+import time
+
+
+csv_file = 'room_temperature.csv'
+
+
+def simulate_temperature():
+    return round(random.uniform(18.0, 30.0), 2)
+
+with open(csv_file, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Timestamp', 'Room Temperature (°C)'])
+
+print(f'Simulating room temperature... (data saved to {csv_file})')
+
+try:
+    while True:
+        
+        temperature = simulate_temperature()
+
+        
+        timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+
+        
+        with open(csv_file, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([timestamp, temperature])
+
+        print(f'{timestamp} - Temperature: {temperature}°C')
+
+        
+        time.sleep(5)
+
+except KeyboardInterrupt:
+    print('\nSimulation stopped.')
